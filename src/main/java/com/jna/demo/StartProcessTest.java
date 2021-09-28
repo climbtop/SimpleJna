@@ -62,16 +62,19 @@ public class StartProcessTest {
     WString nullW = null;
     PROCESS_INFORMATION processInformation = new PROCESS_INFORMATION();
     STARTUPINFO startupInfo = new STARTUPINFO();
+    
+    String exeFile = "C:\\Users\\sunsheng.zhu\\AppData\\Local\\Postman\\Postman.exe";
+    
     boolean result = MoreAdvApi32.INSTANCE.CreateProcessWithLogonW
-       (new WString("username"),                         // user
-        nullW,                                           // domain , null if local
-        new WString("password"),                         // password
+       (new WString("sunsheng.zhu"),                     // user
+    	new WString("MO-CO"),                            // domain , null if local
+        new WString("1qaz@WSX"),                         // password
         MoreAdvApi32.LOGON_WITH_PROFILE,                 // dwLogonFlags
         nullW,                                           // lpApplicationName
-        new WString("c:\\windows\\system32\\cmd.exe"),   // command line
+        new WString(exeFile),                            // command line
         MoreAdvApi32.CREATE_NEW_CONSOLE,                 // dwCreationFlags
         null,                                            // lpEnvironment
-        new WString("C:\\temp\\test"),                   // directory
+        new WString("d:\\output"),                       // directory
         startupInfo,
         processInformation);
 
@@ -79,6 +82,8 @@ public class StartProcessTest {
           int error = Kernel32.INSTANCE.GetLastError();
           System.out.println("OS error #" + error);
           System.out.println(Kernel32Util.formatMessageFromLastErrorCode(error));
+        }else {
+        	System.out.println("CreateProcessWithLogonW: " + result);
         }
     }
 }
