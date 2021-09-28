@@ -7,7 +7,7 @@ import com.sun.jna.win32.W32APIOptions;
 
 /**
  * 
- * @Describe
+ * @Describe 获取登录：域\用户名
  * @author ZSS
  * @date 2021年6月3日
  * @time 下午2:25:41

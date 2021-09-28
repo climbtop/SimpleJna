@@ -5,9 +5,7 @@ import com.sun.jna.platform.win32.WinDef;
 import com.sun.jna.platform.win32.WinUser;
  
 /**
- * 
- * 使用winID来获得窗口的类型和标题，然后发送消息或者其他操作
- *
+ * 	使用winID来获得窗口的类型和标题，然后发送消息或者其他操作 | 模拟按键
  */
 public class SendMsgTest {
     public static void main(String[] args) {

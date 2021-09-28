@@ -4,14 +4,18 @@ import com.sun.jna.Native;
 import com.sun.jna.Pointer;
 import com.sun.jna.WString;
 import com.sun.jna.platform.win32.Advapi32;
-import com.sun.jna.platform.win32.WinBase.PROCESS_INFORMATION;
-import com.sun.jna.platform.win32.WinBase.STARTUPINFO;
-import com.sun.jna.WString;
 import com.sun.jna.platform.win32.Kernel32;
 import com.sun.jna.platform.win32.Kernel32Util;
 import com.sun.jna.platform.win32.WinBase.PROCESS_INFORMATION;
 import com.sun.jna.platform.win32.WinBase.STARTUPINFO;
 
+/**
+ * 
+ * @Describe 启动进程(含账号、密码)
+ * @author ZSS
+ * @date 2021年6月3日
+ * @time 下午2:20:46
+ */
 
 interface MoreAdvApi32 extends Advapi32 {
   MoreAdvApi32 INSTANCE =

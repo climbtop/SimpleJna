@@ -5,7 +5,7 @@ import com.sun.jna.platform.win32.WinDef;
 
 /**
  * 
- * @Describe 
+ * @Describe 拖动 / 移到指定窗口
  * @author ZSS
  * @date 2021年6月3日
  * @time 下午1:32:23

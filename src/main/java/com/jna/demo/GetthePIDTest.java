@@ -2,7 +2,7 @@ package com.jna.demo;
 
 /**
  * 
- * @Describe
+ * @Describe 获取进程ID
  * @author ZSS
  * @date 2021年6月3日
  * @time 下午2:28:10

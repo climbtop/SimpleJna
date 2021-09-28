@@ -7,7 +7,7 @@ import static com.sun.jna.platform.win32.WinReg.HKEY_LOCAL_MACHINE;
 
 /**
  * 
- * @Describe
+ * @Describe 操作管理：注册表信息
  * @author ZSS
  * @date 2021年6月3日
  * @time 下午2:10:39

@@ -6,7 +6,7 @@ import com.sun.jna.platform.win32.WinUser;
 
 /**
  * 
- * @Describe 
+ * @Describe 遍历所有窗口，获取进程窗口标题，并关闭指定窗口；
  * @author ZSS
  * @date 2021年6月3日
  * @time 下午1:55:29

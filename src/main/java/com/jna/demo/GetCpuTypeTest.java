@@ -1,12 +1,12 @@
 package com.jna.demo;
 
-import com.sun.jna.platform.win32.Advapi32Util;
-import static com.sun.jna.platform.win32.WinReg.HKEY_CURRENT_USER;
 import static com.sun.jna.platform.win32.WinReg.HKEY_LOCAL_MACHINE;
+
+import com.sun.jna.platform.win32.Advapi32Util;
 
 /**
  * 
- * @Describe 
+ * @Describe 获取CPU型号
  * @author ZSS
  * @date 2021年6月3日
  * @time 下午2:21:53

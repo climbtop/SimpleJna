@@ -7,7 +7,7 @@ import com.sun.jna.platform.win32.WinDef;
 import com.sun.jna.platform.win32.WinUser;
 
 /**
- * Created by Vellotis on 2.02.2016.
+ * 通过标题找到窗口，模拟按键
  */
 public class User32Test {
 	public static void main(String[] args) {

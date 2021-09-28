@@ -9,6 +9,7 @@ import com.sun.jna.platform.win32.Crypt32Util;
 import com.sun.jna.platform.win32.WinCrypt;
 
 /**
+ * 生成 Mstsc 密码文件
  * mstsc C:/a.rdp /console /v: xxx.xxx.xxx.xxx:3389
  * *.rdp 文件密码加密方法
  */

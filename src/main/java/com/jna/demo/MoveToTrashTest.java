@@ -7,7 +7,7 @@ import com.sun.jna.platform.FileUtils;
 
 /**
  * 
- * @Describe 
+ * @Describe 文件移到垃圾桶
  * @author ZSS
  * @date 2021年6月3日
  * @time 下午2:20:46

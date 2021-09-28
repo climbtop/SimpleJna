@@ -12,7 +12,7 @@ import com.sun.jna.platform.win32.WinUser;
 
 /**
  * 
- * @Describe 
+ * @Describe 键盘钩子：监听键盘按键
  * @author ZSS
  * @date 2021年6月3日
  * @time 下午2:43:02

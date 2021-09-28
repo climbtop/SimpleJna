@@ -7,7 +7,7 @@ import com.sun.jna.platform.win32.WinUser;
 
 /**
  * 
- * @Describe
+ * @Describe 找到QQ窗口，并移到窗口
  * @author ZSS
  * @date 2021年6月3日
  * @time 下午1:12:04

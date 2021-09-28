@@ -8,7 +8,7 @@ import com.sun.jna.platform.win32.WinUser.INPUT;
 
 /**
  * 
- * @Describe 
+ * @Describe 模拟键盘按下、释放
  * @author ZSS
  * @date 2021年6月3日
  * @time 下午1:58:22
