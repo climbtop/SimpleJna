@@ -1,0 +1,1 @@
+Maven Goals: clean package assembly:single
