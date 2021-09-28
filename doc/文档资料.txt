@@ -1,0 +1,22 @@
+
+
+1.建立在经典的JNI技术之上的Java开源框架
+https://github.com/java-native-access/jna
+
+JNA提供一组Java工具类用于在运行期动态访问系统本地库（native library：如Window的dll）
+而不需要编写任何Native/JNI代码。开发人员只要在一个java接口中描述目标native library的函数与结构，
+JNA将自动实现Java接口到native function的映射。
+
+
+2.JNA入门示例
+https://github.com/java-native-access/jna/blob/master/www/GettingStarted.md
+
+3.中文说明
+https://blog.csdn.net/gwd1154978352/article/details/55097376
+
+--------------------------------------------------------------------------
+参考文章：
+深入浅出JNA—快速调用原生函数：http://www.doc88.com/p-31975835542.html
+JNA—JNI终结者：http://blog.csdn.net/shendl/article/details/3589676
+JNA的使用：http://xbgd.iteye.com/blog/1044864
+深入理解JNA—模拟C语言结构体：http://blog.csdn.net/shendl/article/details/3599849
