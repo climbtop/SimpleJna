@@ -29,7 +29,9 @@ public class KeyboardHookTest {
 				// 输出按键值和按键时间
 				if (nCode >= 0) {
 					String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-					System.out.println(time + " KEY: " + (char)event.vkCode);
+					
+					System.out.println(event.vkCode+" -> "+(char)event.vkCode);
+					//System.out.println(time + " KEY: " + (char)event.vkCode);
 					// 按下ESC退出
 					if(event.vkCode==27) KeyboardHook.this.setHookOff();
 				}
