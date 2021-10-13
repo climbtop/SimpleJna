@@ -20,7 +20,7 @@ public class JnaHotKey {
 
 	//ALT+F4
 	public static synchronized void combinKeyInput(long ctrl, long keys) {
-		INPUT[] ipArr = new INPUT[]{new INPUT(),new INPUT(),new INPUT(),new INPUT()};
+		INPUT[] ipArr = (INPUT[])(new INPUT()).toArray(4);
 		arrayset(ipArr, ip -> {ip.type = new WinDef.DWORD(WinUser.INPUT.INPUT_KEYBOARD);});
 		
 		arrayset(ipArr, ip -> {ip.input.setType("ki");});
@@ -36,7 +36,6 @@ public class JnaHotKey {
 		
 		if (ipArr == null || ipArr.length == 0) return;
         User32.INSTANCE.SendInput(new WinDef.DWORD(ipArr.length), ipArr, ipArr[0].size());
-        
     }
 	
 	public static synchronized void arrayset(INPUT[] array, Consumer<INPUT> consumer) {
@@ -65,14 +64,19 @@ public class JnaHotKey {
 			@Override
 			public void run() {
 				try {
+					System.out.println("Combin Key!");
 					Thread.sleep(5*1000);
+					
+					//combinKeyInput(162, 86);//Ctrl + V
+					combinKeyInput(91, 82);//Win + R
+					
+					Thread.sleep(1*1000);
+					System.exit(0);
+					
 				} catch (Exception e) {
 				}
-				
-				combinKeyInput(162, 86);//Ctrl + V
 			}
 		}).start();
 		Thread.currentThread().join();
-		
 	}
 }
