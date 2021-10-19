@@ -30,7 +30,7 @@ public class KeyboardHookTest {
 				if (nCode >= 0) {
 					String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 					
-					System.out.println(event.vkCode+" -> "+(char)event.vkCode);
+					System.out.println(event.vkCode+" -> "+(char)event.vkCode+", flags: "+event.flags);
 					//System.out.println(time + " KEY: " + (char)event.vkCode);
 					// 按下ESC退出
 					if(event.vkCode==27) KeyboardHook.this.setHookOff();
@@ -78,6 +78,18 @@ public class KeyboardHookTest {
 	public static void main(String[] args) {
 		KeyboardHook kbhook = new KeyboardHook();
 		new Thread(kbhook).start();
+		/*
+		 * Ctrl:162,163
+		 * Shift:160,161
+		 * Alt:164,165
+		 * Win:91
+		 * Tab:9
+		 * CapsLock:20
+		 * Esc:27
+		 * Backspace:8
+		 * Enter:13
+		 * F1-F12: 112,,,123
+		 */
 	}
 
 }
