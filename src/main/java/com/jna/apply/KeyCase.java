@@ -30,7 +30,7 @@ public class KeyCase {
 
 	public KeyCase(String caseName) {
 		this.caseName = caseName;
-		this.spanTime = 500L;
+		this.spanTime = 700L;
 		this.quitTime = 5000L;
 		initial();
 	}
