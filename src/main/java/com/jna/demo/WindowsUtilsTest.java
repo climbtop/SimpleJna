@@ -14,7 +14,7 @@ import com.sun.jna.win32.W32APIOptions;
  */
 public class WindowsUtilsTest {
 
-	static final Secur32 secur32 = (Secur32) Native.loadLibrary("secur32", Secur32.class,
+	static final Secur32 secur32 = (Secur32) Native.load("secur32", Secur32.class,
 			W32APIOptions.DEFAULT_OPTIONS);
 
 	public static String getCurrentUserName() {
