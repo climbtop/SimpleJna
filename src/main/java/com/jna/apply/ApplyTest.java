@@ -15,13 +15,13 @@ public class ApplyTest {
 
 	public static void main(String[] args) {
 		
-		KeySeries keyCase1 = new KeySeries();
+		KeyCase keyCase1 = new KeyCase();
 		keyCase1.setWhenKeys(new int[] {162, 162});
 		keyCase1.setQuitKeys(new int[] {162});
 		keyCase1.setWhenCall(arr->{KeyPress.apply(91, 82);}); //Win+R
 		keyCase1.setQuitCall(arr->{KeyPress.apply(164, 115);}); //Alt+F4
 		
-		KeySeries keyCase2 = new KeySeries();
+		KeyCase keyCase2 = new KeyCase();
 		keyCase2.setWhenKeys(new int[] {163, 163});
 		keyCase2.setQuitKeys(new int[] {163});
 		keyCase2.setWhenCall(arr->{KeyPress.apply(91, 82);}); //Win+R

@@ -9,7 +9,7 @@ import java.util.function.Consumer;
  * @date 2021年10月18日
  * @time 上午10:09:21
  */
-public class KeySeries {
+public class KeyCase {
 	
 	private boolean whenFlag;
 	private long    spanTime;
@@ -27,7 +27,7 @@ public class KeySeries {
 	private int[] quitKeys;
 	private Consumer<int[]> quitCall;
 
-	public KeySeries() {
+	public KeyCase() {
 		this.spanTime = 250L;
 		this.quitTime = 650L;
 		initial();
