@@ -30,6 +30,7 @@ public class ApplyTest {
 		List<Consumer<Integer>> consumers = new ArrayList<Consumer<Integer>>();
 		consumers.add((code ->{keyCase1.accept(code);}));
 		consumers.add((code ->{keyCase2.accept(code);}));
+		consumers.add((code ->{System.out.println(code+"->"+((char)code.intValue()));}));
 		
 		KeyboardHook kbhook = new KeyboardHook(consumers);
 		new Thread(kbhook).start();

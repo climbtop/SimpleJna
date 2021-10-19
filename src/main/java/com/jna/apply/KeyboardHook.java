@@ -29,7 +29,7 @@ public class KeyboardHook implements Runnable {
 	private WinUser.LowLevelKeyboardProc keyboardProc = new WinUser.LowLevelKeyboardProc() {
 		@Override
 		public LRESULT callback(int nCode, WPARAM wParam, WinUser.KBDLLHOOKSTRUCT event) {
-			if (nCode >= 0 && event.flags == 0) {
+			if (nCode >= 0 && event.flags <128 ) {
 				if (consumers != null && consumers.size() > 0) {
 					consumers.forEach(consumer -> consumer.accept(event.vkCode));
 				}
