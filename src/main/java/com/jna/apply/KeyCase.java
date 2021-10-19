@@ -47,6 +47,9 @@ public class KeyCase {
 	}
 	
 	public boolean accept(int code) {
+		if(isQuitFlag() && isQuitOver()) {
+			initial();
+		}
 		
 		if(isWhenFlag() && isWhenUsed()) {
 			if(whenIdx<whenKeys.length) {
@@ -57,7 +60,7 @@ public class KeyCase {
 					whenIdx = 0;
 				}
 				
-				if(whenIdx==whenKeys.length) {
+				if(whenIdx>=whenKeys.length) {
 					whenFlag = false;
 					quitFlag = true;
 					if(whenCall!=null) {
@@ -75,7 +78,7 @@ public class KeyCase {
 					quitIdx = 0;
 				}
 				
-				if(quitIdx==quitKeys.length) {
+				if(quitIdx>=quitKeys.length) {
 					initial();
 					if(quitCall!=null) {
 						quitCall.accept(quitKeys);
@@ -86,10 +89,7 @@ public class KeyCase {
 					initial();
 				}
 			}
-		}else if(isQuitFlag() && isQuitOver()) {
-			initial();
 		}
-		
 		
 		System.out.println(this);
 		
