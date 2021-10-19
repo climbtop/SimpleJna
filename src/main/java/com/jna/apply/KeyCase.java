@@ -10,6 +10,7 @@ import java.util.function.Consumer;
  * @time 上午10:09:21
  */
 public class KeyCase {
+	private String  caseName;
 	
 	private boolean whenFlag;
 	private long    spanTime;
@@ -27,17 +28,29 @@ public class KeyCase {
 	private int[] quitKeys;
 	private Consumer<int[]> quitCall;
 
-	public KeyCase() {
+	public KeyCase(String caseName) {
+		this.caseName = caseName;
 		this.spanTime = 250L;
 		this.quitTime = 650L;
 		initial();
+	}
+	
+	public void setting(long spanTime, long quitTime) {
+		this.spanTime = spanTime;
+		this.quitTime = quitTime;
+	}
+	
+	public String toString() {
+		return String.format("{'caseName':'%s', 'whenFlag':'%s', 'quitFlag':'%s',"
+				+ " 'whenIdx':'%s', 'quitIdx':'%s', 'spanOver':'%s', 'quitOver':'%s'}", 
+				caseName, whenFlag, quitFlag, whenIdx, quitIdx, isSpanOver(), isQuitOver());
 	}
 	
 	public boolean accept(int code) {
 		
 		if(isWhenFlag() && isWhenUsed()) {
 			if(whenIdx<whenKeys.length) {
-				if(whenKeys[whenIdx]==code && !isSpanOver(whenIdx)) {
+				if(whenKeys[whenIdx]==code && !isSpanOver()) {
 					whenIdx ++;
 					spanBegin = System.currentTimeMillis();
 				}else {
@@ -54,7 +67,7 @@ public class KeyCase {
 				}
 			}
 		}else if(isQuitFlag() && isQuitUsed()) {
-			if(quitIdx<quitKeys.length  && !isSpanOver(quitIdx) && !isQuitOver()) {
+			if(quitIdx<quitKeys.length  && !isSpanOver() && !isQuitOver()) {
 				if(quitKeys[quitIdx]==code) {
 					quitIdx ++;
 					spanBegin = System.currentTimeMillis();
@@ -77,6 +90,9 @@ public class KeyCase {
 			initial();
 		}
 		
+		
+		System.out.println(this);
+		
 		return true;
 	}
 
@@ -87,6 +103,10 @@ public class KeyCase {
 		quitIdx = 0;
 		spanBegin = System.currentTimeMillis();
 		quitBegin = System.currentTimeMillis();
+	}
+	
+	public boolean isSpanOver() {
+		return isWhenFlag() ? isSpanOver(whenIdx) : isSpanOver(quitIdx);
 	}
 	
 	public boolean isSpanOver(int index) {
@@ -200,6 +220,14 @@ public class KeyCase {
 
 	public void setQuitTime(long quitTime) {
 		this.quitTime = quitTime;
+	}
+
+	public String getCaseName() {
+		return caseName;
+	}
+
+	public void setCaseName(String caseName) {
+		this.caseName = caseName;
 	}
 
 }
