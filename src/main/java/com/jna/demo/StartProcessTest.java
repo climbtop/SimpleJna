@@ -19,7 +19,7 @@ import com.sun.jna.platform.win32.WinBase.STARTUPINFO;
 
 interface MoreAdvApi32 extends Advapi32 {
   MoreAdvApi32 INSTANCE =
-        (MoreAdvApi32) Native.loadLibrary("AdvApi32", MoreAdvApi32.class);
+        (MoreAdvApi32) Native.load("AdvApi32", MoreAdvApi32.class);
 
   /*
    * BOOL WINAPI CreateProcessWithLogonW( __in LPCWSTR lpUsername,
