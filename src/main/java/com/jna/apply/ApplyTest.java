@@ -30,7 +30,7 @@ public class ApplyTest {
 		keyCase2.setQuitCall(arr->{keyCase2.keypress(164, 115);}); //Alt+F4
 		
 		List<Consumer<Integer>> consumers = new ArrayList<Consumer<Integer>>();
-		consumers.add((code ->{System.out.println(code+"->"+((char)code.intValue()));}));
+		//consumers.add((code ->{System.out.println(code+"->"+((char)code.intValue()));}));
 		consumers.add((code ->{keyCase1.accept(code);}));
 		consumers.add((code ->{keyCase2.accept(code);}));
 		

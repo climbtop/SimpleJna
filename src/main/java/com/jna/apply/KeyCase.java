@@ -103,8 +103,7 @@ public class KeyCase {
 			}
 		}
 		
-		System.out.println(this);
-		
+		//System.out.println(this);
 		return true;
 	}
 	
