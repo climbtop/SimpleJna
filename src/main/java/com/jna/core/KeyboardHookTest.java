@@ -27,7 +27,7 @@ public class KeyboardHookTest {
 			@Override
 			public LRESULT callback(int nCode, WPARAM wParam, WinUser.KBDLLHOOKSTRUCT event) {
 				// 输出按键值和按键时间
-				if (nCode >= 0 && event.flags<128) {//小于128为keydown, 大于等于128为keyup
+				if (nCode >= 0) {//小于128为keydown, 大于等于128为keyup
 					String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 					
 					System.out.println(event.vkCode+" -> "+(char)event.vkCode+", flags: "+event.flags);
