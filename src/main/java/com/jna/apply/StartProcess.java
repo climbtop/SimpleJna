@@ -43,25 +43,33 @@ public class StartProcess {
 	private static final Secur32 secur32 = (Secur32) Native.load("secur32", Secur32.class,
 			W32APIOptions.DEFAULT_OPTIONS);
 
-	public static String[] getDomainUser() {
+	public static String getDomainUser() {
 		char[] userNameBuf = new char[512];
 		IntByReference size = new IntByReference(userNameBuf.length);
 		boolean result = secur32.GetUserNameEx(Secur32.EXTENDED_NAME_FORMAT.NameSamCompatible, userNameBuf, size);
 
 		if (!result) return null;
 		
-		String domainUserArr = new String(userNameBuf, 0, size.getValue());
-		int splitIndex = domainUserArr.indexOf(File.separator);
-		return new String[] {domainUserArr.substring(0, splitIndex), domainUserArr.substring(splitIndex+1)};
+		String domainUser = new String(userNameBuf, 0, size.getValue());
+		return domainUser;
 	}
 	
 	public static boolean exec(String exeFile, String passwd) {
+		return exec(exeFile, getDomainUser(), passwd);
+	}
+	
+	public static boolean exec(String exeFile, String dmuser, String passwd) {
 		WString nullW = null;
 		PROCESS_INFORMATION processInformation = new PROCESS_INFORMATION();
 		STARTUPINFO startupInfo = new STARTUPINFO();
 
+		if(exeFile==null ||dmuser==null || passwd==null || !exeFile.contains(File.separator) || !dmuser.contains(File.separator)) {
+			return false;
+		}
+		
 		String exeDir = exeFile.substring(0, exeFile.lastIndexOf(File.separator) + 1);
-		String[] domainUser = getDomainUser();
+		int splitIndex = dmuser.indexOf(File.separator);
+		String[] domainUser = new String[] {dmuser.substring(0, splitIndex), dmuser.substring(splitIndex+1)};
 
 		boolean result = MoreAdvApi32.INSTANCE.CreateProcessWithLogonW(
 				new WString(domainUser[1]), // user
