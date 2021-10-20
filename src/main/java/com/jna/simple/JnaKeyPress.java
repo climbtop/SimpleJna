@@ -15,7 +15,7 @@ import com.sun.jna.platform.win32.WinUser.INPUT;
  * @date 2021年10月13日
  * @time 上午9:50:31
  */
-public class JnaHotKey {
+public class JnaKeyPress {
 
 	//KeyS
 	public static synchronized void combinKeyInput(long keys) {
