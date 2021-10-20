@@ -15,6 +15,10 @@ public class ApplyTest {
 
 	public static void main(String[] args) {
 		
+		System.out.println(StartProcess.getDomainUser()[0]+", "+StartProcess.getDomainUser()[1]);
+		System.out.println(System.getProperty("user.dir"));
+		
+		
 		KeyCase keyCase1 = new KeyCase("case1");
 		keyCase1.setting(700, 5000);
 		keyCase1.setWhenKeys(new int[] {162, 162});
@@ -26,7 +30,9 @@ public class ApplyTest {
 		keyCase2.setting(700, 5000);
 		keyCase2.setWhenKeys(new int[] {163, 163});
 		keyCase2.setQuitKeys(new int[] {163});
-		keyCase2.setWhenCall(arr->{KeyPress.apply(91, 82);}); //Win+R
+		keyCase2.setWhenCall(arr->{
+			StartProcess.exec("C:\\Windows\\System32\\cmd.exe");
+		}); //Win+R
 		keyCase2.setQuitCall(arr->{KeyPress.apply(164, 115);}); //Alt+F4
 		
 		List<Consumer<Integer>> consumers = new ArrayList<Consumer<Integer>>();
