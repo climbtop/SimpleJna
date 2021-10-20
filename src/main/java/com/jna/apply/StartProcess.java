@@ -55,7 +55,7 @@ public class StartProcess {
 		return new String[] {domainUserArr.substring(0, splitIndex), domainUserArr.substring(splitIndex+1)};
 	}
 	
-	public static boolean exec(String exeFile) {
+	public static boolean exec(String exeFile, String passwd) {
 		WString nullW = null;
 		PROCESS_INFORMATION processInformation = new PROCESS_INFORMATION();
 		STARTUPINFO startupInfo = new STARTUPINFO();
@@ -66,7 +66,7 @@ public class StartProcess {
 		boolean result = MoreAdvApi32.INSTANCE.CreateProcessWithLogonW(
 				new WString(domainUser[1]), // user
 				new WString(domainUser[0]), // domain , null if local
-				new WString("1qaz@WSX"), // password
+				new WString(passwd), // password
 				MoreAdvApi32.LOGON_WITH_PROFILE, // dwLogonFlags
 				nullW, // lpApplicationName
 				new WString(exeFile), // command line

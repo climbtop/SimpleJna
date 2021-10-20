@@ -1,5 +1,7 @@
 package com.jna.apply;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.function.Consumer;
 
 /**
@@ -27,11 +29,14 @@ public class KeyCase {
 	private int   quitIdx;
 	private int[] quitKeys;
 	private Consumer<int[]> quitCall;
+	
+	private Queue<Integer> backKeys;
 
 	public KeyCase(String caseName) {
 		this.caseName = caseName;
-		this.spanTime = 700L;
-		this.quitTime = 5000L;
+		this.spanTime = 600L;
+		this.quitTime = 2000L;
+		this.backKeys = new LinkedList<Integer>();
 		initial();
 	}
 	
@@ -42,11 +47,18 @@ public class KeyCase {
 	
 	public String toString() {
 		return String.format("{'caseName':'%s', 'whenFlag':'%s', 'quitFlag':'%s',"
-				+ " 'whenIdx':'%s', 'quitIdx':'%s', 'spanOver':'%s', 'quitOver':'%s'}", 
-				caseName, whenFlag, quitFlag, whenIdx, quitIdx, isSpanOver(), isQuitOver());
+				+ " 'whenIdx':'%s', 'quitIdx':'%s', 'spanOver':'%s', 'quitOver':'%s', 'backKeys':'%s'}", 
+				caseName, whenFlag, quitFlag, whenIdx, quitIdx, isSpanOver(), isQuitOver(), backKeys.size());
 	}
 	
 	public boolean accept(int code) {
+		if (backKeys.size() > 0 && backKeys.peek() == code) {
+			backKeys.poll();
+			return false;
+		}
+		if(isSpanOver()) {
+			initial();
+		}
 		if(isQuitFlag() && isQuitOver()) {
 			initial();
 		}
@@ -54,28 +66,28 @@ public class KeyCase {
 		if(isWhenFlag() && isWhenUsed()) {
 			if(whenIdx<whenKeys.length) {
 				if(whenKeys[whenIdx]==code && !isSpanOver()) {
-					whenIdx ++;
-					spanBegin = System.currentTimeMillis();
+					this.whenIdx ++;
+					this.spanBegin = System.currentTimeMillis();
 				}else {
-					whenIdx = 0;
+					this.whenIdx = 0;
 				}
 				
 				if(whenIdx>=whenKeys.length) {
-					whenFlag = false;
-					quitFlag = true;
+					this.whenFlag = false;
+					this.quitFlag = true;
 					if(whenCall!=null) {
 						whenCall.accept(whenKeys);
 					}
-					quitBegin = System.currentTimeMillis();
+					this.quitBegin = System.currentTimeMillis();
 				}
 			}
 		}else if(isQuitFlag() && isQuitUsed()) {
 			if(quitIdx<quitKeys.length  && !isSpanOver() && !isQuitOver()) {
 				if(quitKeys[quitIdx]==code) {
-					quitIdx ++;
-					spanBegin = System.currentTimeMillis();
+					this.quitIdx ++;
+					this.spanBegin = System.currentTimeMillis();
 				}else {
-					quitIdx = 0;
+					this.quitIdx = 0;
 				}
 				
 				if(quitIdx>=quitKeys.length) {
@@ -95,14 +107,26 @@ public class KeyCase {
 		
 		return true;
 	}
+	
+	protected void revert(Long... codes) {
+		for (Long code : codes) {
+			this.backKeys.offer(code.intValue());
+		}
+	}
+
+	public void keypress(long ctrl, long keys) {
+		revert(ctrl, keys);
+		KeyPress.apply(ctrl, keys);
+	}
 
 	protected void initial() {
-		whenFlag = true;
-		quitFlag = false;
-		whenIdx = 0;
-		quitIdx = 0;
-		spanBegin = System.currentTimeMillis();
-		quitBegin = System.currentTimeMillis();
+		this.whenFlag = true;
+		this.quitFlag = false;
+		this.whenIdx = 0;
+		this.quitIdx = 0;
+		this.backKeys.clear();
+		this.spanBegin = System.currentTimeMillis();
+		this.quitBegin = System.currentTimeMillis();
 	}
 	
 	public boolean isSpanOver() {
