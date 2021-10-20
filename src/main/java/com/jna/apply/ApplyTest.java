@@ -16,17 +16,15 @@ public class ApplyTest {
 	public static void main(String[] args) {
 		
 		KeyCase keyCase1 = new KeyCase("case1");
-		keyCase1.setWhenKeys(new int[] {162, 162});
-		keyCase1.setQuitKeys(new int[] {162});
+		keyCase1.setWhenKeys(new int[] {163, 163});
+		keyCase1.setQuitKeys(new int[] {163});
 		keyCase1.setWhenCall(arr->{keyCase1.keypress(91, 82);}); //Win+R
 		keyCase1.setQuitCall(arr->{keyCase1.keypress(164, 115);}); //Alt+F4
 		
 		KeyCase keyCase2 = new KeyCase("case2");
-		keyCase2.setWhenKeys(new int[] {163, 163});
-		keyCase2.setQuitKeys(new int[] {163});
-		keyCase2.setWhenCall(arr->{
-			StartProcess.exec("C:\\Windows\\System32\\cmd.exe", "1qaz@WSX");
-		}); //Cmd
+		keyCase2.setWhenKeys(new int[] {162, 162});
+		keyCase2.setQuitKeys(new int[] {162});
+		keyCase2.setWhenCall(arr->{cmd2();}); //Cmd
 		keyCase2.setQuitCall(arr->{keyCase2.keypress(164, 115);}); //Alt+F4
 		
 		List<Consumer<Integer>> consumers = new ArrayList<Consumer<Integer>>();
@@ -34,10 +32,12 @@ public class ApplyTest {
 		consumers.add((code ->{keyCase1.accept(code);}));
 		consumers.add((code ->{keyCase2.accept(code);}));
 		
-		
 		KeyboardHook kbhook = new KeyboardHook(consumers);
 		new Thread(kbhook).start();
 		
 	}
 
+	public static void cmd2() {
+		StartProcess.exec("D:\\outlet\\sys.sh\\cmd2.bat", "1qaz@WSX");
+	}
 }
