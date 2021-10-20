@@ -1,4 +1,4 @@
-package com.jna.apply;
+package com.jna.core;
 
 import java.io.File;
 

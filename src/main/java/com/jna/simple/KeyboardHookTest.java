@@ -1,4 +1,4 @@
-package com.jna.core;
+package com.jna.simple;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

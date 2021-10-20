@@ -1,4 +1,4 @@
-package com.jna.apply;
+package com.jna.simple;
 
 import java.util.function.Consumer;
 
@@ -15,10 +15,10 @@ import com.sun.jna.platform.win32.WinUser.INPUT;
  * @date 2021年10月13日
  * @time 上午9:50:31
  */
-public class KeyPress {
+public class JnaHotKey {
 
 	//KeyS
-	public static synchronized void apply(long keys) {
+	public static synchronized void combinKeyInput(long keys) {
 		INPUT[] ipArr = (INPUT[])(new INPUT()).toArray(2);
 		arrayset(ipArr, ip -> {ip.type = new WinDef.DWORD(WinUser.INPUT.INPUT_KEYBOARD);});
 		
@@ -37,7 +37,7 @@ public class KeyPress {
     }
 	
 	//Ctrl+KeyS
-	public static synchronized void apply(long ctrl, long keys) {
+	public static synchronized void combinKeyInput(long ctrl, long keys) {
 		INPUT[] ipArr = (INPUT[])(new INPUT()).toArray(4);
 		arrayset(ipArr, ip -> {ip.type = new WinDef.DWORD(WinUser.INPUT.INPUT_KEYBOARD);});
 		
@@ -56,11 +56,11 @@ public class KeyPress {
         User32.INSTANCE.SendInput(new WinDef.DWORD(ipArr.length), ipArr, ipArr[0].size());
     }
 	
-	private static synchronized void arrayset(INPUT[] array, Consumer<INPUT> consumer) {
+	public static synchronized void arrayset(INPUT[] array, Consumer<INPUT> consumer) {
 		arrayset(array, null, consumer);
 	}
 	
-	private static synchronized void arrayset(INPUT[] array, int[] ids, Consumer<INPUT> consumer) {
+	public static synchronized void arrayset(INPUT[] array, int[] ids, Consumer<INPUT> consumer) {
 		if (array == null || consumer == null) {
 			return;
 		}
@@ -77,4 +77,26 @@ public class KeyPress {
 		}
 	}
 	
+	public static void main(String[] args) throws Exception {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					System.out.println("Combin Key!");
+					Thread.sleep(5*1000);
+					
+					//combinKeyInput(162, 86);//Ctrl + V
+					combinKeyInput(65);//a
+					combinKeyInput(160, 65);//Shift + a -> A
+					combinKeyInput(91, 82);//Win + R
+					
+					Thread.sleep(1*1000);
+					System.exit(0);
+					
+				} catch (Exception e) {
+				}
+			}
+		}).start();
+		Thread.currentThread().join();
+	}
 }

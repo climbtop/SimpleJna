@@ -1,4 +1,4 @@
-package com.jna.apply;
+package com.jna.core;
 
 import java.util.List;
 import java.util.function.Consumer;

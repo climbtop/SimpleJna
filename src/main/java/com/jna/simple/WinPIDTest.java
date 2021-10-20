@@ -1,4 +1,4 @@
-package com.jna.core;
+package com.jna.simple;
 
 import com.sun.jna.Native;
 import com.sun.jna.platform.win32.User32;
