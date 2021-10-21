@@ -74,23 +74,23 @@ public class KeyboardHookTest {
 		}
 	}
 	
+	/*
+	 * Ctrl:162,163
+	 * Shift:160,161
+	 * Alt:164,165
+	 * Win:91
+	 * Tab:9
+	 * CapsLock:20
+	 * Esc:27
+	 * Backspace:8
+	 * Enter:13
+	 * Delete:46
+	 * F1-F12: 112-123
+	 */
 	
 	public static void main(String[] args) {
 		KeyboardHook kbhook = new KeyboardHook();
 		new Thread(kbhook).start();
-		/*
-		 * Ctrl:162,163
-		 * Shift:160,161
-		 * Alt:164,165
-		 * Win:91
-		 * Tab:9
-		 * CapsLock:20
-		 * Esc:27
-		 * Backspace:8
-		 * Enter:13
-		 * Delete:46
-		 * F1-F12: 112-123
-		 */
 	}
 
 }
