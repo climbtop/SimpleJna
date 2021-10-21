@@ -89,7 +89,7 @@ public class KeyboardHookTest {
 		 * Backspace:8
 		 * Enter:13
 		 * Delete:46
-		 * F1-F12: 112,,,123
+		 * F1-F12: 112-123
 		 */
 	}
 
