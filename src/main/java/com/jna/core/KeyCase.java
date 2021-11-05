@@ -15,6 +15,7 @@ public class KeyCase {
 	private String  caseName;
 	
 	private boolean whenFlag;
+	private long    spanMini;
 	private long    spanTime;
 	private long    spanBegin;
 	
@@ -34,13 +35,15 @@ public class KeyCase {
 
 	public KeyCase(String caseName) {
 		this.caseName = caseName;
+		this.spanMini = 0L;
 		this.spanTime = 600L;
 		this.quitTime = 2000L;
 		this.backKeys = new LinkedList<Integer>();
 		initial();
 	}
 	
-	public void setting(long spanTime, long quitTime) {
+	public void setting(long spanMini, long spanTime, long quitTime) {
+		this.spanMini = spanMini;
 		this.spanTime = spanTime;
 		this.quitTime = quitTime;
 	}
@@ -133,7 +136,7 @@ public class KeyCase {
 	}
 	
 	public boolean isSpanOver(int index) {
-		return index!=0 && (System.currentTimeMillis()-spanBegin>spanTime);
+		return index!=0 && ((System.currentTimeMillis()-spanBegin>spanTime)||(System.currentTimeMillis()-spanBegin<spanMini));
 	}
 	
 	public boolean isQuitOver() {
@@ -229,6 +232,22 @@ public class KeyCase {
 		this.quitCall = quitCall;
 	}
 
+	public Queue<Integer> getBackKeys() {
+		return backKeys;
+	}
+
+	public void setBackKeys(Queue<Integer> backKeys) {
+		this.backKeys = backKeys;
+	}
+
+	public long getSpanMini() {
+		return spanMini;
+	}
+
+	public void setSpanMini(long spanMini) {
+		this.spanMini = spanMini;
+	}
+	
 	public long getSpanTime() {
 		return spanTime;
 	}
